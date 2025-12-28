@@ -1,0 +1,3979 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港時空猜跡 | 探索消失與現存的香港地標</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #0055A5;
+            --secondary-color: #EF4135;
+            --accent-color: #FFCC00;
+            --accent2-color: #FF6699;
+            --dark-color: #0F1A2E;
+            --darker-color: #0A1423;
+            --medium-color: #1A2A44;
+            --light-color: #E8F1FF;
+            --vintage-color: #D4AF37;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --glow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+        
+        body {
+            background-color: var(--darker-color);
+            color: var(--light-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 204, 0, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(239, 65, 53, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(0, 85, 165, 0.05) 0%, transparent 20%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* 分頁系統 */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            min-height: 100vh;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(255, 204, 0, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+        }
+        
+        /* 首頁樣式 */
+        .home-page {
+            background: linear-gradient(135deg, var(--darker-color) 0%, #1a0f2e 50%, var(--dark-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-container {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        /* 時空感Logo */
+        .logo-container {
+            margin-bottom: 60px;
+            position: relative;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow), 0 0 40px rgba(255, 204, 0, 0.2);
+            animation: pulseGlow 3s infinite;
+        }
+        
+        .logo-icon {
+            font-size: 90px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 204, 0, 0.8);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+        
+        .logo-icon::after {
+            content: "✨";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 30px;
+            animation: spin 4s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .logo-text {
+            font-size: 58px;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--accent-color), #FFFFFF, var(--accent2-color), #FFFFFF, var(--accent-color));
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 4s linear infinite;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+        
+        .logo-subtitle {
+            font-size: 24px;
+            opacity: 0.9;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--light-color);
+            font-weight: 300;
+            background: linear-gradient(90deg, var(--accent-color), #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo-tagline {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+            font-style: italic;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        /* 系統簡述 */
+        .system-description {
+            max-width: 1000px;
+            margin: 50px auto 70px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow), 0 0 30px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .system-description::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color), var(--primary-color));
+        }
+        
+        .system-description h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            background: linear-gradient(90deg, var(--accent-color), var(--accent2-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .system-description p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: left;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .feature-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-item i {
+            font-size: 30px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-item h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .feature-item p {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            background: rgba(255, 204, 0, 0.1);
+            padding: 0 5px;
+            border-radius: 3px;
+        }
+        
+        .vintage {
+            color: var(--vintage-color);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0 5px;
+            border-radius: 3px;
+        }
+        
+        /* 按鈕樣式 */
+        .btn {
+            display: inline-block;
+            padding: 20px 45px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            margin: 15px;
+            position: relative;
+            overflow: hidden;
+            min-width: 160px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 204, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        .btn i {
+            margin-right: 15px;
+        }
+        
+        .btn-guide {
+            background: linear-gradient(135deg, var(--accent-color), #FF9900);
+        }
+        
+        .btn-play {
+            background: linear-gradient(135deg, var(--success-color), #20c997);
+            padding: 25px 55px;
+            font-size: 24px;
+        }
+        
+        .btn-vintage {
+            background: linear-gradient(135deg, var(--vintage-color), #B8860B);
+        }
+        
+        .btn-modern {
+            background: linear-gradient(135deg, var(--primary-color), #0066CC);
+        }
+        
+        /* 操作指南頁 */
+        .guide-page {
+            background: linear-gradient(135deg, var(--darker-color) 0%, #1a0f2e 100%);
+            color: var(--light-color);
+        }
+        
+        .guide-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+        
+        .guide-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent2-color));
+        }
+        
+        .guide-header h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #FFFFFF, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .guide-header p {
+            font-size: 22px;
+            opacity: 0.9;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1) rotate(-10deg);
+        }
+        
+        .guide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px 90px;
+        }
+        
+        /* 類別選擇頁 */
+        .category-page {
+            background: linear-gradient(135deg, var(--darker-color) 0%, #1a0f2e 100%);
+            padding-top: 60px;
+        }
+        
+        .category-header {
+            text-align: center;
+            margin-bottom: 70px;
+            padding: 0 20px;
+        }
+        
+        .category-header h1 {
+            font-size: 56px;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent2-color), #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .category-header p {
+            font-size: 22px;
+            max-width: 900px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .category-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .category-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .category-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 204, 0, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .category-icon {
+            font-size: 80px;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+        
+        .category-card h2 {
+            color: var(--accent-color);
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+        
+        .category-card p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 18px;
+            flex-grow: 1;
+        }
+        
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 8px 18px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .vintage-tag {
+            background: linear-gradient(135deg, var(--vintage-color), #B8860B);
+        }
+        
+        .modern-tag {
+            background: linear-gradient(135deg, var(--primary-color), #0066CC);
+        }
+        
+        .category-count {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(255, 204, 0, 0.3);
+        }
+        
+        /* 模式選擇頁 */
+        .mode-page {
+            background: linear-gradient(135deg, var(--darker-color) 0%, #1a0f2e 100%);
+            padding-top: 60px;
+        }
+        
+        .mode-header {
+            text-align: center;
+            margin-bottom: 70px;
+            padding: 0 20px;
+        }
+        
+        .mode-header h1 {
+            font-size: 52px;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--accent-color), #FFFFFF, var(--accent2-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mode-header p {
+            font-size: 22px;
+            max-width: 900px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+        
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .mode-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .mode-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(239, 65, 53, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .mode-icon {
+            font-size: 80px;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+        
+        .mode-card h2 {
+            color: var(--accent-color);
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+        
+        .mode-card p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 18px;
+            flex-grow: 1;
+        }
+        
+        .mode-difficulty {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+        
+        /* 遊戲頁面 */
+        .game-page {
+            background: linear-gradient(135deg, var(--darker-color) 0%, #1a0f2e 100%);
+            padding: 30px;
+        }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color), var(--primary-color));
+        }
+        
+        .game-title-container h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+            text-shadow: 0 2px 10px rgba(255, 204, 0, 0.5);
+        }
+        
+        .game-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .game-category-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-info {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .game-info-item {
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .game-info-value {
+            font-size: 42px;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+            margin-bottom: 5px;
+        }
+        
+        .game-info-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+        }
+        
+        .game-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 1000px) {
+            .game-main {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .hint-section, .answer-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hint-section::before, .answer-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent2-color));
+        }
+        
+        .hint-tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+        
+        .hint-tab {
+            padding: 18px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            color: white;
+            font-size: 18px;
+            min-width: 150px;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .hint-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 204, 0, 0.3);
+        }
+        
+        .hint-tab:not(.active):hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .hint-content {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px 0;
+        }
+        
+        .hint-tab-content {
+            display: none;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .hint-tab-content.active {
+            display: block;
+        }
+        
+        .hint-image {
+            max-width: 100%;
+            max-height: 350px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hint-text {
+            font-size: 26px;
+            text-align: center;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            border-left: 6px solid var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hint-audio {
+            width: 100%;
+            max-width: 550px;
+            margin-top: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .audio-note {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 25px;
+            font-size: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .answer-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 85, 165, 0.5);
+            transform: scale(1.02);
+        }
+        
+        .hint-buttons, .game-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .answer-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+        
+        @media (max-width: 700px) {
+            .answer-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .btn-hint {
+            background: linear-gradient(135deg, var(--warning-color), #ff9900);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--success-color), #20c997);
+        }
+        
+        .btn-skip {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+        
+        .btn-exit {
+            background: linear-gradient(135deg, var(--danger-color), #c82333);
+        }
+        
+        .btn-pause {
+            background: linear-gradient(135deg, #6f42c1, #8e44ad);
+        }
+        
+        .game-feedback {
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 40px;
+            font-size: 22px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-left: 6px solid var(--accent-color);
+        }
+        
+        /* 時空標記 */
+        .time-era {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-left: 15px;
+            font-size: 16px;
+        }
+        
+        .time-past {
+            background: linear-gradient(135deg, var(--vintage-color), #B8860B);
+            color: var(--dark-color);
+        }
+        
+        .time-present {
+            background: linear-gradient(135deg, var(--primary-color), #0066CC);
+            color: white;
+        }
+        
+        /* 結果頁 */
+        .result-page {
+            background: linear-gradient(135deg, var(--darker-color) 0%, #1a0f2e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+        
+        .result-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 35px;
+            padding: 70px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: var(--shadow), 0 0 40px rgba(255, 204, 0, 0.2);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent2-color), var(--primary-color));
+        }
+        
+        .result-icon {
+            font-size: 120px;
+            color: var(--accent-color);
+            margin-bottom: 50px;
+            text-shadow: 0 0 40px rgba(255, 204, 0, 0.5);
+        }
+        
+        .result-title {
+            color: var(--accent-color);
+            font-size: 56px;
+            margin-bottom: 50px;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, var(--accent-color), #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 22px;
+        }
+        
+        .result-review {
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            border-left: 8px solid var(--accent-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result-review h2 {
+            color: var(--accent-color);
+            font-size: 32px;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(255, 204, 0, 0.3);
+        }
+        
+        .result-review p {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+        
+        .result-stats#achievements-container {
+            margin-top: 40px;
+            display: none;
+        }
+        
+        .result-stats#achievements-container h2 {
+            grid-column: 1 / -1;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        #achievements-list {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .achievement-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), #FF9900);
+            color: var(--dark-color);
+            padding: 15px 25px;
+            border-radius: 30px;
+            margin: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.3);
+            transition: var(--transition);
+        }
+        
+        .achievement-badge:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(255, 204, 0, 0.4);
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 900px) {
+            .logo-text {
+                font-size: 42px;
+            }
+            
+            .system-description {
+                padding: 35px;
+            }
+            
+            .category-grid, .mode-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .game-header {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .game-info {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .hint-tabs {
+                justify-content: center;
+            }
+            
+            .hint-tab {
+                min-width: 130px;
+                padding: 15px 25px;
+            }
+            
+            .btn {
+                padding: 18px 35px;
+                font-size: 18px;
+                min-width: 140px;
+            }
+            
+            .btn-play {
+                padding: 22px 45px;
+                font-size: 22px;
+            }
+            
+            .back-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                top: 25px;
+                left: 25px;
+            }
+            
+            .result-card {
+                padding: 50px 30px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .logo-text {
+                font-size: 36px;
+            }
+            
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .hint-buttons, .game-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 350px;
+                margin: 10px 0;
+            }
+            
+            .category-card, .mode-card {
+                padding: 30px;
+                min-height: 350px;
+            }
+            
+            .category-icon, .mode-icon {
+                font-size: 60px;
+                height: 80px;
+                margin-bottom: 20px;
+            }
+            
+            .category-card h2, .mode-card h2 {
+                font-size: 28px;
+            }
+        }
+        
+        /* 背景裝飾 */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 204, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(239, 65, 53, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(0, 85, 165, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1;
+            filter: blur(2px);
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation: float 25s infinite linear;
+            background: radial-gradient(circle, rgba(255, 204, 0, 0.1), transparent 70%);
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation: float 30s infinite linear reverse;
+            background: radial-gradient(circle, rgba(239, 65, 53, 0.1), transparent 70%);
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 15%;
+            animation: float 20s infinite linear;
+            background: radial-gradient(circle, rgba(0, 85, 165, 0.1), transparent 70%);
+        }
+        
+        .floating-element:nth-child(4) {
+            width: 180px;
+            height: 180px;
+            top: 30%;
+            right: 20%;
+            animation: float 35s infinite linear;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        
+        /* 時空傳送門效果 */
+        .time-portal {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 204, 0, 0.3), transparent 70%);
+            animation: portalSpin 10s linear infinite;
+            z-index: 1;
+            filter: blur(10px);
+        }
+        
+        .time-portal:nth-child(1) {
+            top: 10%;
+            right: 10%;
+        }
+        
+        .time-portal:nth-child(2) {
+            bottom: 10%;
+            left: 10%;
+            animation: portalSpin 15s linear infinite reverse;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3), transparent 70%);
+        }
+        
+        @keyframes portalSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* 音效控制 */
+        .sound-controls {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+        }
+        
+        .sound-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .sound-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1) rotate(15deg);
+        }
+        
+        /* 暫停覆蓋層 */
+        .pause-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .pause-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .pause-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 204, 0, 0.2);
+        }
+        
+        .pause-content h2 {
+            color: var(--accent-color);
+            font-size: 42px;
+            margin-bottom: 35px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pause-content p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+        }
+        
+        /* 通知訊息 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: var(--shadow);
+            z-index: 1001;
+            max-width: 400px;
+            animation: slideIn 0.3s ease;
+            display: none;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification.success {
+            border-left-color: var(--success-color);
+        }
+        
+        .notification.error {
+            border-left-color: var(--danger-color);
+        }
+        
+        .notification.warning {
+            border-left-color: var(--warning-color);
+        }
+        
+        /* 自訂設定模態框 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            padding: 50px;
+            border-radius: 30px;
+            max-width: 800px;
+            width: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 204, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .modal-header h2 {
+            color: var(--accent-color);
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .setting-group {
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+        }
+        
+        .setting-label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .setting-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: white;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .setting-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .checkbox-label:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* 遊戲歷史頁面 */
+        .history-page {
+            background: linear-gradient(135deg, var(--darker-color) 0%, #1a0f2e 100%);
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+        
+        .history-table {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .history-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 25px;
+            text-align: left;
+            font-size: 20px;
+            color: white;
+        }
+        
+        .history-table td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .history-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* 收藏功能 */
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            color: #ccc;
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 10px;
+        }
+        
+        .favorite-btn.favorited {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        /* 載入動畫 */
+        .loading {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            border-top: 8px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        /* 香港小知識卡片 */
+        .hk-fact {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 85, 165, 0.1));
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border-left: 6px solid var(--vintage-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .hk-fact h3 {
+            color: var(--vintage-color);
+            margin-bottom: 15px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hk-fact p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <!-- 首頁 -->
+    <div id="home-page" class="page active">
+        <div class="home-page">
+            <div class="bg-pattern"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="time-portal"></div>
+            <div class="time-portal"></div>
+            
+            <div class="home-container">
+                <!-- 頂部區塊：時空感Logo -->
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h1 class="logo-text">香港時空猜跡</h1>
+                    <div class="logo-subtitle">HONG KONG TIME TRAVEL GUESSING</div>
+                    <div class="logo-tagline">穿梭時光長河 · 探索消失與現存的香港印記 · 考驗你的城市記憶力</div>
+                </div>
+                
+                <!-- 中間區塊：系統簡述 -->
+                <div class="system-description">
+                    <h2>穿越時空的香港記憶之旅</h2>
+                    <p>歡迎來到 <span class="highlight">香港時空猜跡</span>！這不僅僅是一個猜謎遊戲，更是一趟穿越時光的香港文化探索之旅。</p>
+                    <p>從<span class="vintage">昔日已消失的懷舊地標</span>到<span class="highlight">現今繁華的都市景觀</span>，從<span class="vintage">充滿人情味的唐樓與屋邨</span>到<span class="highlight">現代化的公共設施與交通網絡</span>，遊戲涵蓋香港各個層面的地理與文化記憶。</p>
+                    <p>透過圖片、文字與聲音提示，挑戰你對香港<span class="highlight">街道、建築、市集、交通、公共空間</span>的認識，重溫這座城市獨特的故事與變遷。</p>
+                    
+                    <div class="feature-highlights">
+                        <div class="feature-item">
+                            <i class="fas fa-history"></i>
+                            <h3>時空穿梭</h3>
+                            <p>包含昔日已消失的懷舊地點與現存地標</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-layer-group"></i>
+                            <h3>多元類別</h3>
+                            <p>街道、公共設施、交通、屋邨、市集、唐樓等</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-gamepad"></i>
+                            <h3>豐富模式</h3>
+                            <p>經典、挑戰、生存、時空穿梭等多種遊戲模式</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-trophy"></i>
+                            <h3>成就系統</h3>
+                            <p>解鎖成就，成為真正的香港通</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 操作按鈕 -->
+                <div class="action-buttons">
+                    <button class="btn btn-guide" onclick="showPage('guide-page')">
+                        <i class="fas fa-book"></i> 遊戲指南
+                    </button>
+                    <button class="btn btn-vintage" onclick="showPage('category-page')">
+                        <i class="fas fa-clock"></i> 時光之旅
+                    </button>
+                    <button class="btn btn-play" onclick="startQuickGame()">
+                        <i class="fas fa-play-circle"></i> 快速開始
+                    </button>
+                    <button class="btn" onclick="showPage('history-page')">
+                        <i class="fas fa-history"></i> 遊戲歷史
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 操作指南頁 -->
+    <div id="guide-page" class="page">
+        <div class="guide-page">
+            <div class="guide-header">
+                <button class="back-btn" onclick="showPage('home-page')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>時空探索指南</h1>
+                <p>掌握遊戲玩法，開始你的香港時空探索之旅</p>
+            </div>
+            
+            <div class="guide-content">
+                <!-- 遊戲概念 -->
+                <div class="section" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); border-radius: 25px; padding: 40px; margin-bottom: 40px; box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h2 style="color: var(--accent-color); font-size: 36px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid var(--accent-color); display: flex; align-items: center;">
+                        <i class="fas fa-compass"></i> 遊戲概念
+                    </h2>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.8; margin-bottom: 20px;">
+                        <span class="highlight">香港時空猜跡</span> 是一個結合猜謎、教育與文化探索的互動遊戲。玩家將穿梭於香港的時空之間，猜測各種地點、建築、街道的名稱。
+                    </p>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.8; margin-bottom: 20px;">
+                        遊戲包含兩個時空維度：<span class="vintage">「昔日香港」</span>與<span class="highlight">「現今香港」</span>。前者涵蓋已消失或改變的懷舊地點，後者則聚焦現存的地標與設施。
+                    </p>
+                </div>
+                
+                <!-- 類別說明 -->
+                <div class="section" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); border-radius: 25px; padding: 40px; margin-bottom: 40px; box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h2 style="color: var(--accent-color); font-size: 36px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid var(--accent-color); display: flex; align-items: center;">
+                        <i class="fas fa-th-large"></i> 探索類別
+                    </h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 20px;">
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); padding: 25px; border-radius: 18px; border-left: 6px solid var(--accent-color); transition: var(--transition);">
+                            <h3 style="color: var(--accent-color); margin-bottom: 15px; font-size: 22px;">街道與道路</h3>
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7;">香港各區著名街道、道路、天橋、隧道名稱。</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); padding: 25px; border-radius: 18px; border-left: 6px solid var(--vintage-color); transition: var(--transition);">
+                            <h3 style="color: var(--vintage-color); margin-bottom: 15px; font-size: 22px;">公共設施</h3>
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7;">圖書館、體育館、社區中心、政府建築等。</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); padding: 25px; border-radius: 18px; border-left: 6px solid var(--primary-color); transition: var(--transition);">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 22px;">交通網絡</h3>
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7;">地鐵站、巴士總站、渡輪碼頭、電車站等。</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); padding: 25px; border-radius: 18px; border-left: 6px solid var(--secondary-color); transition: var(--transition);">
+                            <h3 style="color: var(--secondary-color); margin-bottom: 15px; font-size: 22px;">公共屋邨</h3>
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7;">各區公共屋邨名稱，包括已重建的舊式屋邨。</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); padding: 25px; border-radius: 18px; border-left: 6px solid var(--accent2-color); transition: var(--transition);">
+                            <h3 style="color: var(--accent2-color); margin-bottom: 15px; font-size: 22px;">市集與店鋪</h3>
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7;">街市、濕貨市場、特色店鋪、老字號等。</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); padding: 25px; border-radius: 18px; border-left: 6px solid #6f42c1; transition: var(--transition);">
+                            <h3 style="color: #6f42c1; margin-bottom: 15px; font-size: 22px;">唐樓與歷史建築</h3>
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7;">戰前唐樓、歷史建築、特色騎樓等。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 遊戲步驟 -->
+                <div class="section" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); border-radius: 25px; padding: 40px; margin-bottom: 40px; box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h2 style="color: var(--accent-color); font-size: 36px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid var(--accent-color); display: flex; align-items: center;">
+                        <i class="fas fa-list-ol"></i> 探索步驟
+                    </h2>
+                    <ol style="counter-reset: step-counter; list-style-type: none;">
+                        <li style="counter-increment: step-counter; margin-bottom: 30px; padding-left: 80px; position: relative; color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.7;">
+                            <strong>選擇時空類別</strong>：從多種香港地點類別中選擇你想探索的主題。
+                            <span style="display: block; margin-top: 10px; color: rgba(255, 255, 255, 0.7); font-size: 18px;">可選擇單一類別或多個類別組合。</span>
+                        </li>
+                        <li style="counter-increment: step-counter; margin-bottom: 30px; padding-left: 80px; position: relative; color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.7;">
+                            <strong>選擇遊戲模式</strong>：根據你的喜好選擇適合的挑戰模式。
+                            <span style="display: block; margin-top: 10px; color: rgba(255, 255, 255, 0.7); font-size: 18px;">每種模式提供不同的遊戲體驗和挑戰。</span>
+                        </li>
+                        <li style="counter-increment: step-counter; margin-bottom: 30px; padding-left: 80px; position: relative; color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.7;">
+                            <strong>開始時空探索</strong>：根據提供的提示猜測香港地點名稱。
+                            <span style="display: block; margin-top: 10px; color: rgba(255, 255, 255, 0.7); font-size: 18px;">每題有圖片、文字和聲音提示可供使用。</span>
+                        </li>
+                        <li style="counter-increment: step-counter; margin-bottom: 30px; padding-left: 80px; position: relative; color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.7;">
+                            <strong>使用時空提示</strong>：如有需要，可使用提示幫助猜測。
+                            <span style="display: block; margin-top: 10px; color: rgba(255, 255, 255, 0.7); font-size: 18px;">提示越少使用，最終得分越高。</span>
+                        </li>
+                        <li style="counter-increment: step-counter; margin-bottom: 30px; padding-left: 80px; position: relative; color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.7;">
+                            <strong>提交答案</strong>：輸入你猜測的地點名稱或從選項中選擇。
+                            <span style="display: block; margin-top: 10px; color: rgba(255, 255, 255, 0.7); font-size: 18px;">系統會自動匹配答案，包括別名和部分匹配。</span>
+                        </li>
+                        <li style="counter-increment: step-counter; margin-bottom: 30px; padding-left: 80px; position: relative; color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.7;">
+                            <strong>查看歷史回顧</strong>：答對後可查看地點的詳細介紹與歷史變遷。
+                            <span style="display: block; margin-top: 10px; color: rgba(255, 255, 255, 0.7); font-size: 18px;">了解地點的過去與現在，學習香港歷史文化。</span>
+                        </li>
+                        <li style="counter-increment: step-counter; margin-bottom: 30px; padding-left: 80px; position: relative; color: rgba(255, 255, 255, 0.9); font-size: 20px; line-height: 1.7;">
+                            <strong>完成探索旅程</strong>：完成所有題目或隨時結束遊戲，查看最終成績。
+                            <span style="display: block; margin-top: 10px; color: rgba(255, 255, 255, 0.7); font-size: 18px;">解鎖成就，成為真正的香港時空探索者。</span>
+                        </li>
+                    </ol>
+                    <style>
+                        ol li:before {
+                            content: counter(step-counter);
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 60px;
+                            height: 60px;
+                            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                            color: white;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-weight: bold;
+                            font-size: 24px;
+                            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                        }
+                    </style>
+                </div>
+                
+                <!-- 香港小知識 -->
+                <div id="hk-fact-container" class="hk-fact">
+                    <h3><i class="fas fa-lightbulb"></i> 香港小知識</h3>
+                    <p id="hk-fact-text">載入中...</p>
+                </div>
+                
+                <div class="text-center" style="margin-top: 50px;">
+                    <button class="btn" onclick="showPage('home-page')">
+                        <i class="fas fa-home"></i> 返回時空大廳
+                    </button>
+                    <button class="btn btn-play" onclick="startQuickGame()">
+                        <i class="fas fa-play-circle"></i> 快速開始
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 類別選擇頁 -->
+    <div id="category-page" class="page">
+        <div class="category-page">
+            <div class="bg-pattern"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="container">
+                <div class="category-header">
+                    <button class="back-btn" onclick="showPage('home-page')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h1>選擇時空類別</h1>
+                    <p>選擇您想探索的香港地點類別，可以選擇單一類別或多類別組合，開始您的時空探索之旅</p>
+                </div>
+                
+                <div class="category-grid">
+                    <div class="category-card" onclick="selectCategory('streets')">
+                        <div class="category-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <h2>街道與道路</h2>
+                        <div class="category-tags">
+                            <span class="category-tag vintage-tag">懷舊街道</span>
+                            <span class="category-tag modern-tag">現代道路</span>
+                        </div>
+                        <div class="category-count">包含 120+ 個地點</div>
+                        <p>探索香港各區著名街道、道路、天橋、隧道名稱，從懷舊石板街到現代高速公路。</p>
+                        <button class="btn">探索此類別</button>
+                    </div>
+                    
+                    <div class="category-card" onclick="selectCategory('facilities')">
+                        <div class="category-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h2>公共設施</h2>
+                        <div class="category-tags">
+                            <span class="category-tag vintage-tag">舊式設施</span>
+                            <span class="category-tag modern-tag">現代設施</span>
+                        </div>
+                        <div class="category-count">包含 90+ 個地點</div>
+                        <p>圖書館、體育館、社區中心、政府建築等，見證香港公共服務的發展與變遷。</p>
+                        <button class="btn">探索此類別</button>
+                    </div>
+                    
+                    <div class="category-card" onclick="selectCategory('transport')">
+                        <div class="category-icon">
+                            <i class="fas fa-subway"></i>
+                        </div>
+                        <h2>交通網絡</h2>
+                        <div class="category-tags">
+                            <span class="category-tag vintage-tag">懷舊交通</span>
+                            <span class="category-tag modern-tag">現代交通</span>
+                        </div>
+                        <div class="category-count">包含 110+ 個地點</div>
+                        <p>地鐵站、巴士總站、渡輪碼頭、電車站、纜車站等，探索香港交通的發展歷程。</p>
+                        <button class="btn">探索此類別</button>
+                    </div>
+                    
+                    <div class="category-card" onclick="selectCategory('estates')">
+                        <div class="category-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h2>公共屋邨</h2>
+                        <div class="category-tags">
+                            <span class="category-tag vintage-tag">舊式屋邨</span>
+                            <span class="category-tag modern-tag">新型屋邨</span>
+                        </div>
+                        <div class="category-count">包含 80+ 個地點</div>
+                        <p>各區公共屋邨名稱，包括已重建的舊式屋邨與現代化新型屋邨，見證香港居住環境變遷。</p>
+                        <button class="btn">探索此類別</button>
+                    </div>
+                    
+                    <div class="category-card" onclick="selectCategory('markets')">
+                        <div class="category-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h2>市集與店鋪</h2>
+                        <div class="category-tags">
+                            <span class="category-tag vintage-tag">傳統市集</span>
+                            <span class="category-tag modern-tag">現代商場</span>
+                        </div>
+                        <div class="category-count">包含 70+ 個地點</div>
+                        <p>街市、濕貨市場、特色店鋪、老字號、夜市等，體驗香港獨特的購物與飲食文化。</p>
+                        <button class="btn">探索此類別</button>
+                    </div>
+                    
+                    <div class="category-card" onclick="selectCategory('buildings')">
+                        <div class="category-icon">
+                            <i class="fas fa-archway"></i>
+                        </div>
+                        <h2>唐樓與歷史建築</h2>
+                        <div class="category-tags">
+                            <span class="category-tag vintage-tag">戰前建築</span>
+                            <span class="category-tag">歷史遺產</span>
+                        </div>
+                        <div class="category-count">包含 60+ 個地點</div>
+                        <p>戰前唐樓、歷史建築、特色騎樓、古蹟等，探索香港建築風格的演變與歷史印記。</p>
+                        <button class="btn">探索此類別</button>
+                    </div>
+                    
+                    <div class="category-card" onclick="selectCategory('all')">
+                        <div class="category-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h2>全類別探索</h2>
+                        <div class="category-tags">
+                            <span class="category-tag vintage-tag">懷舊時空</span>
+                            <span class="category-tag modern-tag">現代時空</span>
+                        </div>
+                        <div class="category-count">包含 500+ 個地點</div>
+                        <p>包含所有類別的香港地點，全面挑戰您對香港地理與文化的認識，體驗完整的時空之旅。</p>
+                        <button class="btn">全面探索</button>
+                    </div>
+                    
+                    <div class="category-card" onclick="selectCategory('custom')">
+                        <div class="category-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h2>自訂組合</h2>
+                        <div class="category-tags">
+                            <span class="category-tag">自由搭配</span>
+                            <span class="category-tag">個人化</span>
+                        </div>
+                        <div class="category-count">自選地點數量</div>
+                        <p>自訂您想探索的類別組合，創造獨特的時空探索體驗，專屬於您的香港記憶之旅。</p>
+                        <button class="btn" onclick="showCustomCategorySettings()">自訂設定</button>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button class="btn" onclick="showPage('home-page')">
+                        <i class="fas fa-arrow-left"></i> 返回時空大廳
+                    </button>
+                    <button class="btn btn-play" onclick="startQuickGame()">
+                        <i class="fas fa-play-circle"></i> 快速開始（隨機）
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模式選擇頁 -->
+    <div id="mode-page" class="page">
+        <div class="mode-page">
+            <div class="bg-pattern"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="container">
+                <div class="mode-header">
+                    <button class="back-btn" onclick="showPage('category-page')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h1>選擇時空模式</h1>
+                    <p>根據您的喜好選擇適合的探索模式，每種模式提供不同的時空體驗與挑戰</p>
+                </div>
+                
+                <div class="mode-grid">
+                    <div class="mode-card" onclick="selectMode('classic')">
+                        <div class="mode-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h2>經典時空</h2>
+                        <div class="mode-difficulty">難度：簡單</div>
+                        <p>傳統探索形式，無時間限制，適合新手玩家。慢慢思考，享受時空猜謎樂趣。</p>
+                        <button class="btn">選擇此模式</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('challenge')">
+                        <div class="mode-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h2>時空挑戰</h2>
+                        <div class="mode-difficulty">難度：中等</div>
+                        <p>每題限時30秒，考驗您對香港地點的熟悉程度和反應速度，挑戰時空記憶極限。</p>
+                        <button class="btn">選擇此模式</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('survival')">
+                        <div class="mode-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h2>時空生存</h2>
+                        <div class="mode-difficulty">難度：困難</div>
+                        <p>答錯一題即結束探索，挑戰您的知識極限，看您能連續穿越多少時空題目。</p>
+                        <button class="btn">選擇此模式</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('timetravel')">
+                        <div class="mode-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <h2>時空穿梭</h2>
+                        <div class="mode-difficulty">難度：中等</div>
+                        <p>隨機穿梭於昔日與現今香港，體驗時空交錯的探索樂趣，猜測不同時代的地點。</p>
+                        <button class="btn">選擇此模式</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('learning')">
+                        <div class="mode-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h2>時空學堂</h2>
+                        <div class="mode-difficulty">難度：自訂</div>
+                        <p>以學習為目的，答錯後提供詳細歷史解釋，深入了解香港地點的變遷與故事。</p>
+                        <button class="btn">選擇此模式</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('memory')">
+                        <div class="mode-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h2>記憶考驗</h2>
+                        <div class="mode-difficulty">難度：困難</div>
+                        <p>僅有模糊的懷舊圖片或歷史描述，考驗您對香港舊日面貌的記憶與想像。</p>
+                        <button class="btn">選擇此模式</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('versus')">
+                        <div class="mode-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h2>時空對決</h2>
+                        <div class="mode-difficulty">難度：中等</div>
+                        <p>與朋友輪流挑戰，比較得分，增添時空探索樂趣和競爭性。</p>
+                        <button class="btn">選擇此模式</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('custom')">
+                        <div class="mode-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h2>自訂時空</h2>
+                        <div class="mode-difficulty">難度：自訂</div>
+                        <p>自訂時空探索規則，包括時間限制、提示數量和題目難度等，創造專屬體驗。</p>
+                        <button class="btn" onclick="showSettingsModal()">自訂設定</button>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button class="btn" onclick="showPage('category-page')">
+                        <i class="fas fa-arrow-left"></i> 返回類別選擇
+                    </button>
+                    <button class="btn btn-play" onclick="startQuickGame()">
+                        <i class="fas fa-play-circle"></i> 快速開始
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 遊戲頁面 -->
+    <div id="game-page" class="page">
+        <div class="game-page">
+            <div class="container">
+                <div class="game-header">
+                    <div class="game-title-container">
+                        <h1 id="game-title">經典時空 - 街道與道路</h1>
+                        <p class="game-subtitle">第 <span id="current-question">1</span> 題，共 <span id="total-questions">10</span> 題</p>
+                        <div class="game-category-tag" id="category-tag">街道與道路</div>
+                        <div id="time-era-tag" class="time-era time-present" style="display: inline-block;">現今香港</div>
+                    </div>
+                    
+                    <div class="game-info">
+                        <div class="game-info-item">
+                            <div class="game-info-value" id="score">0</div>
+                            <div class="game-info-label">時空積分</div>
+                        </div>
+                        <div class="game-info-item">
+                            <div class="game-info-value" id="hints-left">3</div>
+                            <div class="game-info-label">剩餘提示</div>
+                        </div>
+                        <div class="game-info-item">
+                            <div class="game-info-value" id="time-left">--</div>
+                            <div class="game-info-label">剩餘時間</div>
+                        </div>
+                        <div class="game-info-item">
+                            <button class="favorite-btn" id="favorite-btn" onclick="toggleFavorite()" title="收藏此題目">
+                                <i class="far fa-star"></i>
+                            </button>
+                            <div class="game-info-label">收藏</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-main">
+                    <div class="hint-section">
+                        <div class="hint-tabs">
+                            <button class="hint-tab active" onclick="showHintTab('text')">文字提示</button>
+                            <button class="hint-tab" onclick="showHintTab('image')">時空影像</button>
+                            <button class="hint-tab" onclick="showHintTab('audio')">環境聲音</button>
+                            <button class="hint-tab" onclick="showHintTab('history')">歷史回顧</button>
+                        </div>
+                        
+                        <div class="hint-content">
+                            <div id="text-hint" class="hint-tab-content active">
+                                <p class="hint-text" id="text-hint-content">這是一條位於香港島的著名斜坡街道，以石板鋪砌而成，兩旁有許多特色小店和餐廳，充滿懷舊氣息。</p>
+                            </div>
+                            
+                            <div id="image-hint" class="hint-tab-content">
+                                <img src="https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="地點提示圖片" class="hint-image" id="image-hint-content" onerror="this.src='https://via.placeholder.com/800x450/0F1A2E/FFCC00?text=圖片載入失敗'">
+                            </div>
+                            
+                            <div id="audio-hint" class="hint-tab-content">
+                                <p class="hint-text">環境聲音：點擊播放按鈕聆聽地點的環境聲音</p>
+                                <audio controls class="hint-audio" id="audio-hint-content">
+                                    <source src="https://assets.mixkit.co/sfx/preview/mixkit-city-traffic-outdoors-478.mp3" type="audio/mpeg">
+                                    您的瀏覽器不支援音訊元素。
+                                </audio>
+                                <p class="audio-note">*部分瀏覽器需要用戶互動後才能播放音訊</p>
+                            </div>
+                            
+                            <div id="history-hint" class="hint-tab-content">
+                                <p class="hint-text" id="history-hint-content">載入歷史資訊中...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hint-buttons">
+                            <button class="btn btn-hint" onclick="useHint()" id="hint-button">
+                                <i class="fas fa-lightbulb"></i> 使用提示 (剩餘: <span id="hint-count">3</span>)
+                            </button>
+                            <button class="btn" onclick="showAnswer()" id="reveal-button">
+                                <i class="fas fa-eye"></i> 顯示答案
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="answer-section">
+                        <h2>猜猜這是哪裡？</h2>
+                        <p class="hint-text">輸入您猜測的地點名稱：</p>
+                        
+                        <input type="text" class="answer-input" id="answer-input" placeholder="輸入香港地點名稱..." maxlength="50" onkeypress="if(event.key === 'Enter') submitAnswer()">
+                        
+                        <div class="text-center" id="answer-options-container">
+                            <p>或從選項中選擇：</p>
+                            <div class="answer-options" id="answer-options">
+                                <button class="btn" onclick="selectAnswer('石板街')">石板街</button>
+                                <button class="btn" onclick="selectAnswer('缽甸乍街')">缽甸乍街</button>
+                                <button class="btn" onclick="selectAnswer('蘭桂坊')">蘭桂坊</button>
+                                <button class="btn" onclick="selectAnswer('廟街')">廟街</button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-buttons">
+                            <button class="btn btn-submit" onclick="submitAnswer()" id="submit-button">
+                                <i class="fas fa-paper-plane"></i> 提交答案
+                            </button>
+                            <button class="btn btn-skip" onclick="skipQuestion()" id="skip-button">
+                                <i class="fas fa-forward"></i> 跳過
+                            </button>
+                            <button class="btn btn-pause" onclick="togglePause()">
+                                <i class="fas fa-pause"></i> 暫停
+                            </button>
+                            <button class="btn btn-exit" onclick="confirmEndGame()">
+                                <i class="fas fa-sign-out-alt"></i> 結束探索
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div id="game-feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 遊戲結果頁 -->
+    <div id="result-page" class="page">
+        <div class="result-page">
+            <div class="result-card">
+                <div class="result-icon" id="result-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                
+                <h1 class="result-title" id="result-title">時空探索完成！</h1>
+                
+                <div class="result-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="final-score">0</div>
+                        <div class="stat-label">時空積分</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="correct-answers">0/0</div>
+                        <div class="stat-label">正確題數</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-time">0</div>
+                        <div class="stat-label">探索時間(秒)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="hints-used">0</div>
+                        <div class="stat-label">提示使用</div>
+                    </div>
+                </div>
+                
+                <div class="result-review">
+                    <h2>時空探索評價</h2>
+                    <p id="game-review">您對香港地理有很好的認識！繼續努力，挑戰更高時空積分！</p>
+                </div>
+                
+                <div class="result-stats" id="achievements-container" style="margin-top: 30px; display: none;">
+                    <h2 style="grid-column: 1 / -1; color: var(--accent-color); margin-bottom: 20px;">獲得時空成就</h2>
+                    <div id="achievements-list"></div>
+                </div>
+                
+                <!-- 遊戲詳細數據 -->
+                <div id="game-details" style="display: none; margin-top: 30px;">
+                    <h2 style="color: var(--accent-color); margin-bottom: 20px;">詳細數據</h2>
+                    <div id="game-details-content"></div>
+                </div>
+                
+                <div class="game-buttons">
+                    <button class="btn" onclick="showPage('home-page')">
+                        <i class="fas fa-home"></i> 返回時空大廳
+                    </button>
+                    <button class="btn" onclick="restartGame()">
+                        <i class="fas fa-redo"></i> 再次探索
+                    </button>
+                    <button class="btn btn-play" onclick="showPage('category-page')">
+                        <i class="fas fa-gamepad"></i> 選擇其他時空
+                    </button>
+                    <button class="btn" onclick="toggleGameDetails()" id="details-button">
+                        <i class="fas fa-chart-bar"></i> 查看詳情
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 遊戲歷史頁 -->
+    <div id="history-page" class="page">
+        <div class="history-page">
+            <div class="container">
+                <div class="category-header">
+                    <button class="back-btn" onclick="showPage('home-page')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h1>遊戲歷史記錄</h1>
+                    <p>查看您過去的時空探索紀錄與成就</p>
+                </div>
+                
+                <div id="history-content">
+                    <p class="text-center">載入歷史記錄中...</p>
+                </div>
+                
+                <div class="text-center" style="margin-top: 40px;">
+                    <button class="btn" onclick="clearGameHistory()">
+                        <i class="fas fa-trash"></i> 清除歷史記錄
+                    </button>
+                    <button class="btn" onclick="showPage('home-page')">
+                        <i class="fas fa-home"></i> 返回時空大廳
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 暫停覆蓋層 -->
+    <div id="pause-overlay" class="pause-overlay">
+        <div class="pause-content">
+            <h2>時空探索暫停</h2>
+            <p>探索已暫停，時空計時器已停止</p>
+            <div class="game-buttons">
+                <button class="btn btn-submit" onclick="togglePause()">
+                    <i class="fas fa-play"></i> 繼續探索
+                </button>
+                <button class="btn btn-exit" onclick="confirmEndGame()">
+                    <i class="fas fa-sign-out-alt"></i> 結束探索
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 自訂設定模態框 -->
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>自訂時空設定</h2>
+                <p>設定您的專屬時空探索規則</p>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">時間限制（秒）</label>
+                <input type="number" class="setting-control" id="custom-time" min="0" max="300" value="30" placeholder="0為無限制">
+                <small style="color: rgba(255, 255, 255, 0.7);">每題作答時間限制，0表示無時間限制</small>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">題目數量</label>
+                <input type="number" class="setting-control" id="custom-questions" min="5" max="50" value="15">
+                <small style="color: rgba(255, 255, 255, 0.7);">遊戲總題目數（5-50題）</small>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">初始提示數量</label>
+                <input type="number" class="setting-control" id="custom-hints" min="1" max="10" value="3">
+                <small style="color: rgba(255, 255, 255, 0.7);">遊戲開始時的提示數量</small>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">選擇類別</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="category" value="streets" checked> 街道與道路
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="category" value="facilities"> 公共設施
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="category" value="transport"> 交通網絡
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="category" value="estates"> 公共屋邨
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="category" value="markets"> 市集與店鋪
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="category" value="buildings"> 唐樓與歷史建築
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="category" value="vintage"> 懷舊地點
+                    </label>
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">遊戲選項</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="allow-skip" checked> 允許跳過題目
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="show-options" checked> 顯示答案選項
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="show-feedback"> 顯示詳細反饋
+                    </label>
+                </div>
+            </div>
+            
+            <div class="game-buttons" style="margin-top: 40px;">
+                <button class="btn btn-exit" onclick="hideSettingsModal()">
+                    <i class="fas fa-times"></i> 取消
+                </button>
+                <button class="btn btn-submit" onclick="saveCustomSettings()">
+                    <i class="fas fa-save"></i> 開始探索
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 通知訊息 -->
+    <div id="notification" class="notification">
+        <div id="notification-message">訊息內容</div>
+    </div>
+    
+    <!-- 音效控制 -->
+    <div class="sound-controls">
+        <button class="sound-btn" id="sound-toggle" onclick="toggleSound()">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // 遊戲數據
+        let currentGame = {
+            mode: 'classic',
+            category: 'streets',
+            categories: ['streets'],
+            era: 'all',
+            score: 0,
+            currentQuestion: 1,
+            totalQuestions: 10,
+            hintsLeft: 3,
+            timeLeft: 30,
+            correctAnswers: 0,
+            hintsUsed: 0,
+            startTime: null,
+            timer: null,
+            isPaused: false,
+            gameHistory: [],
+            allowSkip: true,
+            showOptions: true,
+            soundEnabled: true,
+            achievements: [],
+            timeEra: 'present',
+            currentQuestionObj: null,
+            favorites: new Set(),
+            showFeedback: true,
+            autoSave: true
+        };
+        
+        // 擴展題庫 - 修正重複ID問題
+        const gameQuestions = {
+            streets: [
+                { id: 1, location: "石板街", aliases: ["砵甸乍街", "Pottinger Street"], hints: { text: "這是一條位於香港島中環的著名斜坡街道，以石板鋪砌而成，兩旁有許多特色小店和餐廳，充滿懷舊氣息。", image: "https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-city-traffic-outdoors-478.mp3", history: "石板街正式名稱為砵甸乍街，是香港一條著名的懷舊街道，以香港第一任總督砵甸乍命名。街道建於1845年，是香港最早期的街道之一。" }, options: ["石板街", "缽甸乍街", "蘭桂坊", "廟街"], category: "streets", era: "present", difficulty: 2 },
+                { id: 2, location: "彌敦道", aliases: ["Nathan Road"], hints: { text: "香港九龍最主要的街道，貫穿尖沙咀、佐敦、油麻地、旺角等地區，是九龍的交通大動脈。", image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-busy-city-traffic-1237.mp3", history: "彌敦道是九龍半島最主要的幹道，全長約3.6公里，沿途商舖林立，日夜人流不息。原稱羅便臣道，1909年為紀念港督彌敦而改名。" }, options: ["彌敦道", "廣東道", "梳士巴利道", "柯士甸道"], category: "streets", era: "present", difficulty: 1 },
+                { id: 3, location: "皇后大道中", aliases: ["Queen's Road Central"], hints: { text: "香港島最早建成的道路之一，位於中環核心商業區，兩旁盡是銀行、金融機構和高級商廈。", image: "https://images.unsplash.com/photo-1516157254059-33c136142e86?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-city-traffic-outdoors-478.mp3", history: "皇后大道中是香港開埠後最早興建的街道之一，見證了香港從漁村發展為國際金融中心的歷程。建於1841年，是香港第一條主要道路。" }, options: ["皇后大道中", "德輔道中", "干諾道中", "軒尼詩道"], category: "streets", era: "present", difficulty: 2 }
+            ],
+            facilities: [
+                { id: 101, location: "香港中央圖書館", aliases: ["Central Library"], hints: { text: "位於銅鑼灣的香港最大公共圖書館，建築外型獨特，樓高12層，藏書量超過200萬冊。", image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-library-ambience-867.mp3", history: "香港中央圖書館是香港公共圖書館系統的旗艦館，設有多個專科部門和特別收藏。2001年啟用，是香港重要的文化地標。" }, options: ["香港中央圖書館", "九龍公共圖書館", "沙田公共圖書館", "大會堂公共圖書館"], category: "facilities", era: "present", difficulty: 2 }
+            ],
+            transport: [
+                { id: 201, location: "中環碼頭", aliases: ["Central Ferry Piers"], hints: { text: "位於中環海旁的渡輪碼頭綜合體，提供往來離島和九龍的多條渡輪航線，是香港重要的海上交通樞紐。", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-boat-horn-1234.mp3", history: "中環碼頭提供往來多個離島和九龍的渡輪服務，其中天星小輪更是香港的標誌性交通工具。最早的碼頭建於19世紀末。" }, options: ["中環碼頭", "尖沙咀碼頭", "灣仔碼頭", "紅磡碼頭"], category: "transport", era: "present", difficulty: 1 }
+            ],
+            estates: [
+                { id: 301, location: "華富邨", aliases: ["Wah Fu Estate"], hints: { text: "位於香港島南區的公共屋邨，建於1960年代，是香港早期的大型公共屋邨之一，以海景聞名。", image: "https://images.unsplash.com/photo-1545324412-51b2d48d4c7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-community-housing-estate-ambience-1242.mp3", history: "華富邨是香港著名的公共屋邨，以其獨特的建築設計和海景單位聞名，將進行重建計劃。1967年入伙，是香港首個設有商場的公共屋邨。" }, options: ["華富邨", "華貴邨", "田灣邨", "石排灣邨"], category: "estates", era: "present", difficulty: 3 }
+            ],
+            markets: [
+                { id: 401, location: "女人街", aliases: ["通菜街", "Ladies' Market"], hints: { text: "位於旺角的著名露天市集，以售賣女性服飾、配件和紀念品為主，是遊客購物的熱門地點。", image: "https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-market-crowd-talking-ambience-444.mp3", history: "女人街正式名稱為通菜街，是旺角著名的露天市集，全長約一公里，充滿香港市井氣息。1970年代開始形成，現已成為香港旅遊景點之一。" }, options: ["女人街", "廟街", "花墟道", "金魚街"], category: "markets", era: "present", difficulty: 1 }
+            ],
+            buildings: [
+                { id: 501, location: "藍屋", aliases: ["Blue House"], hints: { text: "位於灣仔石水渠街的戰前唐樓，外牆漆上鮮豔的藍色，是香港一級歷史建築，現活化為生活館。", image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-old-building-ambience-1245.mp3", history: "藍屋是香港少數保存完整的戰前唐樓，現已活化為「香港故事館」，展示灣仔社區歷史。建於1920年代，2017年獲聯合國教科文組織亞太區文物古蹟保護獎。" }, options: ["藍屋", "黃屋", "橙屋", "綠屋"], category: "buildings", era: "past", difficulty: 3 }
+            ],
+            vintage: [
+                { id: 601, location: "啟德機場", aliases: ["Kai Tak Airport"], hints: { text: "香港舊機場，位於九龍城，以驚險的降落路線聞名，飛機低空飛過密集住宅區的景象令人難忘。", image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", audio: "https://assets.mixkit.co/sfx/preview/mixkit-airplane-taking-off-1239.mp3", history: "啟德機場於1925年至1998年間運作，以其獨特的降落方式聞名世界，現已改建為郵輪碼頭和住宅區。曾是世界上最危險的機場之一。" }, options: ["啟德機場", "赤鱲角機場", "香港國際機場", "石崗機場"], category: "vintage", era: "past", difficulty: 2 }
+            ]
+        };
+        
+        // 香港小知識資料庫
+        const hkFacts = [
+            "香港的叮叮車（電車）自1904年開始運行，是世界上最古老的有軌電車系統之一。",
+            "重慶大廈因電影《重慶森林》而聞名，內有超過120間賓館和餐廳，被稱為「小聯合國」。",
+            "香港有超過260個島嶼，但大部分人口集中在香港島和九龍半島。",
+            "蘭桂坊原本是一條普通的街道，1980年代逐漸發展成為香港著名的夜生活區。",
+            "太平山頂纜車自1888年開始運營，是亞洲最早的纜車索道系統。",
+            "香港的公共屋邨居住著約三分之一的人口，是香港重要的住房政策。",
+            "廟街夜市又被稱為「平民夜總會」，是香港最具特色的夜市之一。",
+            "香港國際機場連續多年被評為全球最佳機場之一。",
+            "石板街（砵甸乍街）是香港現存最古老的街道之一，建於1845年。",
+            "天星小輪自1898年開始服務，曾是香港島與九龍之間的主要交通工具。"
+        ];
+        
+        // 所有題目合併（確保無重複ID）
+        const allQuestions = (() => {
+            const questions = [];
+            const idSet = new Set();
+            
+            Object.values(gameQuestions).forEach(category => {
+                category.forEach(question => {
+                    if (!idSet.has(question.id)) {
+                        idSet.add(question.id);
+                        questions.push(question);
+                    }
+                });
+            });
+            
+            return questions;
+        })();
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            showPage('home-page');
+            
+            // 載入收藏資料
+            loadFavorites();
+            
+            // 載入香港小知識
+            loadHKFact();
+            
+            // 檢查localStorage可用性
+            testLocalStorage();
+        });
+        
+        // 初始化應用
+        function initializeApp() {
+            // 檢查並初始化localStorage數據
+            try {
+                const savedFavorites = localStorage.getItem('hktt_favorites');
+                if (savedFavorites) {
+                    currentGame.favorites = new Set(JSON.parse(savedFavorites));
+                }
+                
+                const savedSettings = localStorage.getItem('hktt_settings');
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    currentGame.soundEnabled = settings.soundEnabled !== undefined ? settings.soundEnabled : true;
+                    currentGame.showFeedback = settings.showFeedback !== undefined ? settings.showFeedback : true;
+                    currentGame.autoSave = settings.autoSave !== undefined ? settings.autoSave : true;
+                    
+                    // 更新音效按鈕狀態
+                    updateSoundButton();
+                }
+                
+                // 載入遊戲狀態（自動恢復）
+                const savedGame = localStorage.getItem('hktt_savedGame');
+                if (savedGame && confirm('檢測到未完成的遊戲，是否恢復？')) {
+                    restoreGame(JSON.parse(savedGame));
+                }
+            } catch (error) {
+                console.error('初始化應用時出錯:', error);
+                showNotification('無法載入本地數據，部分功能可能受限', 'warning');
+            }
+        }
+        
+        // 測試localStorage可用性
+        function testLocalStorage() {
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                return true;
+            } catch (error) {
+                console.warn('localStorage不可用:', error);
+                currentGame.autoSave = false;
+                showNotification('您的瀏覽器不支援本地存儲，遊戲進度將無法保存', 'error');
+                return false;
+            }
+        }
+        
+        // 頁面導航控制
+        function showPage(pageId) {
+            // 隱藏所有頁面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 顯示目標頁面
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                
+                // 如果是遊戲頁面，初始化遊戲
+                if (pageId === 'game-page') {
+                    setTimeout(() => initializeGame(), 100);
+                }
+                
+                // 如果是歷史頁面，載入歷史記錄
+                if (pageId === 'history-page') {
+                    loadGameHistory();
+                }
+                
+                // 如果是指南頁面，載入香港小知識
+                if (pageId === 'guide-page') {
+                    loadHKFact();
+                }
+                
+                // 保存當前頁面
+                saveToLocalStorage('lastPage', pageId);
+            }
+        }
+        
+        // 快速開始遊戲
+        function startQuickGame() {
+            // 隨機選擇類別和模式
+            const categories = Object.keys(gameQuestions);
+            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+            const modes = ['classic', 'challenge', 'timetravel'];
+            const randomMode = modes[Math.floor(Math.random() * modes.length)];
+            
+            currentGame.category = randomCategory;
+            currentGame.categories = [randomCategory];
+            currentGame.mode = randomMode;
+            
+            // 設置模式參數
+            selectMode(randomMode);
+        }
+        
+        // 選擇類別
+        function selectCategory(category) {
+            if (category === 'all') {
+                currentGame.categories = Object.keys(gameQuestions);
+            } else if (category === 'custom') {
+                showCustomCategorySettings();
+                return;
+            } else {
+                currentGame.categories = [category];
+            }
+            
+            currentGame.category = category;
+            showPage('mode-page');
+        }
+        
+        // 顯示自訂類別設定
+        function showCustomCategorySettings() {
+            showSettingsModal();
+        }
+        
+        // 顯示設定模態框
+        function showSettingsModal() {
+            document.getElementById('settings-modal').classList.add('active');
+        }
+        
+        // 隱藏設定模態框
+        function hideSettingsModal() {
+            document.getElementById('settings-modal').classList.remove('active');
+        }
+        
+        // 保存自訂設定
+        function saveCustomSettings() {
+            // 獲取設定值
+            const timeLimit = parseInt(document.getElementById('custom-time').value) || 0;
+            const questionCount = parseInt(document.getElementById('custom-questions').value) || 15;
+            const hintCount = parseInt(document.getElementById('custom-hints').value) || 3;
+            
+            // 驗證輸入
+            if (questionCount < 5 || questionCount > 50) {
+                showNotification('題目數量必須在5-50之間', 'error');
+                return;
+            }
+            
+            if (hintCount < 1 || hintCount > 10) {
+                showNotification('提示數量必須在1-10之間', 'error');
+                return;
+            }
+            
+            // 獲取選中的類別
+            const selectedCategories = [];
+            document.querySelectorAll('input[name="category"]:checked').forEach(checkbox => {
+                selectedCategories.push(checkbox.value);
+            });
+            
+            if (selectedCategories.length === 0) {
+                showNotification('請至少選擇一個類別', 'error');
+                return;
+            }
+            
+            // 獲取遊戲選項
+            const allowSkip = document.getElementById('allow-skip').checked;
+            const showOptions = document.getElementById('show-options').checked;
+            const showFeedback = document.getElementById('show-feedback').checked;
+            
+            // 保存設定
+            currentGame.mode = 'custom';
+            currentGame.categories = selectedCategories;
+            currentGame.category = 'custom';
+            currentGame.timeLimit = timeLimit;
+            currentGame.totalQuestions = questionCount;
+            currentGame.hintsLeft = hintCount;
+            currentGame.allowSkip = allowSkip;
+            currentGame.showOptions = showOptions;
+            currentGame.showFeedback = showFeedback;
+            
+            // 隱藏模態框並開始遊戲
+            hideSettingsModal();
+            showPage('game-page');
+        }
+        
+        // 選擇模式
+        function selectMode(mode) {
+            currentGame.mode = mode;
+            
+            // 根據模式設置遊戲參數
+            switch(mode) {
+                case 'classic':
+                    currentGame.timeLimit = 0;
+                    currentGame.totalQuestions = 15;
+                    currentGame.hintsLeft = 3;
+                    currentGame.allowSkip = true;
+                    currentGame.showOptions = true;
+                    break;
+                case 'challenge':
+                    currentGame.timeLimit = 30;
+                    currentGame.totalQuestions = 20;
+                    currentGame.hintsLeft = 2;
+                    currentGame.allowSkip = false;
+                    currentGame.showOptions = true;
+                    break;
+                case 'survival':
+                    currentGame.timeLimit = 20;
+                    currentGame.totalQuestions = 999;
+                    currentGame.hintsLeft = 2;
+                    currentGame.allowSkip = false;
+                    currentGame.showOptions = true;
+                    break;
+                case 'timetravel':
+                    currentGame.timeLimit = 30;
+                    currentGame.totalQuestions = 15;
+                    currentGame.hintsLeft = 3;
+                    currentGame.allowSkip = true;
+                    currentGame.showOptions = true;
+                    currentGame.era = 'all';
+                    break;
+                case 'learning':
+                    currentGame.timeLimit = 0;
+                    currentGame.totalQuestions = 10;
+                    currentGame.hintsLeft = 5;
+                    currentGame.allowSkip = true;
+                    currentGame.showOptions = true;
+                    currentGame.showFeedback = true;
+                    break;
+                case 'memory':
+                    currentGame.timeLimit = 40;
+                    currentGame.totalQuestions = 10;
+                    currentGame.hintsLeft = 1;
+                    currentGame.allowSkip = false;
+                    currentGame.showOptions = false;
+                    break;
+                case 'versus':
+                    currentGame.timeLimit = 25;
+                    currentGame.totalQuestions = 10;
+                    currentGame.hintsLeft = 3;
+                    currentGame.allowSkip = false;
+                    currentGame.showOptions = true;
+                    break;
+            }
+            
+            // 開始遊戲
+            showPage('game-page');
+        }
+        
+        // 遊戲變量
+        let currentQuestionIndex = 0;
+        let usedQuestions = new Set();
+        let availableHints = ['text', 'image', 'audio', 'history'];
+        let unlockedHints = ['text'];
+        
+        // 初始化遊戲
+        function initializeGame() {
+            // 重置遊戲狀態
+            currentGame.score = 0;
+            currentGame.currentQuestion = 1;
+            currentGame.hintsLeft = currentGame.hintsLeft || 3;
+            currentGame.correctAnswers = 0;
+            currentGame.hintsUsed = 0;
+            currentGame.gameHistory = [];
+            currentGame.achievements = [];
+            usedQuestions.clear();
+            currentQuestionIndex = 0;
+            unlockedHints = ['text'];
+            
+            // 更新遊戲介面
+            document.getElementById('game-title').textContent = 
+                getModeName(currentGame.mode) + " - " + getCategoryName(currentGame.category);
+            document.getElementById('current-question').textContent = currentGame.currentQuestion;
+            document.getElementById('total-questions').textContent = currentGame.totalQuestions;
+            document.getElementById('score').textContent = currentGame.score;
+            document.getElementById('hints-left').textContent = currentGame.hintsLeft;
+            document.getElementById('hint-count').textContent = currentGame.hintsLeft;
+            document.getElementById('category-tag').textContent = getCategoryName(currentGame.category);
+            
+            // 根據模式設置時間顯示
+            if (currentGame.timeLimit > 0) {
+                currentGame.timeLeft = currentGame.timeLimit;
+                document.getElementById('time-left').textContent = currentGame.timeLeft;
+                startTimer();
+            } else {
+                document.getElementById('time-left').textContent = "無限制";
+            }
+            
+            // 設置跳過按鈕
+            const skipButton = document.getElementById('skip-button');
+            if (currentGame.allowSkip) {
+                skipButton.style.display = 'inline-block';
+            } else {
+                skipButton.style.display = 'none';
+            }
+            
+            // 設置答案選項
+            const optionsContainer = document.getElementById('answer-options-container');
+            if (currentGame.showOptions) {
+                optionsContainer.style.display = 'block';
+            } else {
+                optionsContainer.style.display = 'none';
+            }
+            
+            // 載入第一題
+            loadQuestion();
+            
+            // 記錄遊戲開始時間
+            currentGame.startTime = new Date();
+            
+            // 隱藏暫停覆蓋層
+            document.getElementById('pause-overlay').classList.remove('active');
+            currentGame.isPaused = false;
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 開始計時器
+        function startTimer() {
+            if (currentGame.timer) {
+                clearInterval(currentGame.timer);
+            }
+            
+            if (currentGame.timeLimit <= 0 || currentGame.isPaused) return;
+            
+            currentGame.timer = setInterval(() => {
+                if (!currentGame.isPaused) {
+                    currentGame.timeLeft--;
+                    document.getElementById('time-left').textContent = currentGame.timeLeft;
+                    
+                    if (currentGame.timeLeft <= 0) {
+                        clearInterval(currentGame.timer);
+                        timeUp();
+                    }
+                }
+            }, 1000);
+        }
+        
+        // 暫停/繼續遊戲
+        function togglePause() {
+            currentGame.isPaused = !currentGame.isPaused;
+            const pauseOverlay = document.getElementById('pause-overlay');
+            
+            if (currentGame.isPaused) {
+                pauseOverlay.classList.add('active');
+                if (currentGame.timer) {
+                    clearInterval(currentGame.timer);
+                }
+            } else {
+                pauseOverlay.classList.remove('active');
+                startTimer();
+            }
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 時間到
+        function timeUp() {
+            if (!currentGame.currentQuestionObj) return;
+            
+            const question = currentGame.currentQuestionObj;
+            const correctAnswer = question.location;
+            
+            let feedbackHtml = '<div class="game-feedback" style="background-color: var(--danger-color); color: white;">';
+            feedbackHtml += '⏰ 時間到！正確答案是：<strong>' + correctAnswer + '</strong>';
+            
+            if (question.hints?.history && currentGame.showFeedback) {
+                feedbackHtml += '<br><br>' + question.hints.history;
+            }
+            
+            feedbackHtml += '</div>';
+            
+            document.getElementById('game-feedback').innerHTML = feedbackHtml;
+            
+            // 記錄遊戲歷史
+            currentGame.gameHistory.push({
+                question: question,
+                userAnswer: null,
+                correct: false,
+                timeUp: true,
+                timestamp: new Date().toISOString()
+            });
+            
+            // 生存模式：時間到也算失敗
+            if (currentGame.mode === 'survival') {
+                setTimeout(() => {
+                    endGame();
+                }, 4000);
+                return;
+            }
+            
+            setTimeout(() => {
+                nextQuestion();
+            }, 4000);
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 獲取當前題目
+        function getCurrentQuestion() {
+            // 篩選符合類別的題目
+            let filteredQuestions = allQuestions.filter(q => 
+                currentGame.categories.includes(q.category) || 
+                (currentGame.categories.includes('vintage') && q.era === 'past')
+            );
+            
+            // 時空穿梭模式：隨機選擇時代
+            if (currentGame.mode === 'timetravel' && Math.random() > 0.5) {
+                filteredQuestions = filteredQuestions.filter(q => q.era === 'past');
+            }
+            
+            // 移除已使用的題目
+            filteredQuestions = filteredQuestions.filter(q => !usedQuestions.has(q.id));
+            
+            // 如果沒有可用的題目，重置已使用題目記錄
+            if (filteredQuestions.length === 0) {
+                usedQuestions.clear();
+                filteredQuestions = allQuestions.filter(q => 
+                    currentGame.categories.includes(q.category) || 
+                    (currentGame.categories.includes('vintage') && q.era === 'past')
+                );
+                
+                // 如果還是沒有題目，返回預設題目
+                if (filteredQuestions.length === 0) {
+                    return allQuestions[0];
+                }
+            }
+            
+            // 隨機選擇題目
+            const randomIndex = Math.floor(Math.random() * filteredQuestions.length);
+            return filteredQuestions[randomIndex];
+        }
+        
+        // 載入題目
+        function loadQuestion() {
+            const question = getCurrentQuestion();
+            if (!question) {
+                showNotification('無法載入題目，請重新開始遊戲', 'error');
+                return;
+            }
+            
+            usedQuestions.add(question.id);
+            currentGame.currentQuestionObj = question;
+            
+            // 更新時空標記
+            const timeEraTag = document.getElementById('time-era-tag');
+            if (question.era === 'past') {
+                timeEraTag.textContent = "昔日香港";
+                timeEraTag.className = "time-era time-past";
+                timeEraTag.style.display = "inline-block";
+            } else {
+                timeEraTag.textContent = "現今香港";
+                timeEraTag.className = "time-era time-present";
+                timeEraTag.style.display = "inline-block";
+            }
+            
+            // 更新提示內容
+            document.getElementById('text-hint-content').textContent = question.hints?.text || "這是一個香港地點";
+            
+            if (question.hints?.image) {
+                document.getElementById('image-hint-content').src = question.hints.image;
+            }
+            
+            if (question.hints?.audio) {
+                document.getElementById('audio-hint-content').src = question.hints.audio;
+            }
+            
+            if (question.hints?.history) {
+                document.getElementById('history-hint-content').textContent = question.hints.history;
+            }
+            
+            // 更新答案選項
+            const optionsContainer = document.getElementById('answer-options');
+            optionsContainer.innerHTML = '';
+            
+            if (question.options && currentGame.showOptions) {
+                question.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'btn';
+                    button.textContent = option;
+                    button.onclick = () => selectAnswer(option);
+                    optionsContainer.appendChild(button);
+                });
+            }
+            
+            // 重置輸入框
+            document.getElementById('answer-input').value = '';
+            
+            // 重置提示標籤
+            showHintTab('text');
+            unlockedHints = ['text'];
+            
+            // 更新提示標籤狀態
+            updateHintTabs();
+            
+            // 重置反饋訊息
+            document.getElementById('game-feedback').innerHTML = '';
+            
+            // 更新收藏按鈕
+            updateFavoriteButton();
+            
+            // 重置計時器（如果有時間限制）
+            if (currentGame.timeLimit > 0 && !currentGame.isPaused) {
+                currentGame.timeLeft = currentGame.timeLimit;
+                document.getElementById('time-left').textContent = currentGame.timeLeft;
+                startTimer();
+            }
+            
+            // 保存當前題目索引
+            currentQuestionIndex = allQuestions.findIndex(q => q.id === question.id);
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 更新提示標籤狀態
+        function updateHintTabs() {
+            document.querySelectorAll('.hint-tab').forEach(tab => {
+                const tabName = tab.getAttribute('onclick').match(/'(\w+)'/)[1];
+                if (unlockedHints.includes(tabName)) {
+                    tab.classList.add('active');
+                    document.getElementById(tabName + '-hint').classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                    document.getElementById(tabName + '-hint').classList.remove('active');
+                }
+            });
+        }
+        
+        // 顯示提示標籤
+        function showHintTab(tabName) {
+            if (!unlockedHints.includes(tabName)) {
+                return;
+            }
+            
+            // 隱藏所有標籤內容
+            document.querySelectorAll('.hint-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 移除所有標籤的active類
+            document.querySelectorAll('.hint-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 顯示目標標籤內容
+            const targetTab = document.getElementById(tabName + '-hint');
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            // 激活目標標籤
+            const targetButton = document.querySelector(`.hint-tab[onclick*="${tabName}"]`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+        }
+        
+        // 使用提示
+        function useHint() {
+            if (currentGame.hintsLeft <= 0) {
+                showNotification('沒有更多提示了！', 'warning');
+                return;
+            }
+            
+            // 找出未解鎖的提示
+            const lockedHints = availableHints.filter(hint => !unlockedHints.includes(hint));
+            
+            if (lockedHints.length === 0) {
+                showNotification('所有提示已解鎖！', 'info');
+                return;
+            }
+            
+            // 隨機選擇一個未解鎖的提示
+            const randomHint = lockedHints[Math.floor(Math.random() * lockedHints.length)];
+            unlockedHints.push(randomHint);
+            
+            currentGame.hintsLeft--;
+            currentGame.hintsUsed++;
+            document.getElementById('hints-left').textContent = currentGame.hintsLeft;
+            document.getElementById('hint-count').textContent = currentGame.hintsLeft;
+            
+            // 自動切換到新解鎖的提示
+            showHintTab(randomHint);
+            
+            // 顯示反饋訊息
+            showNotification('新提示已解鎖！剩餘提示：' + currentGame.hintsLeft, 'success');
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 選擇答案
+        function selectAnswer(answer) {
+            document.getElementById('answer-input').value = answer;
+        }
+        
+        // 檢查答案匹配
+        function checkAnswerMatch(userAnswer, correctAnswer, aliases) {
+            if (!userAnswer) return false;
+            
+            // 轉為小寫並移除空格和標點
+            const normalize = (str) => str.toLowerCase()
+                .replace(/\s+/g, '')
+                .replace(/[.,，。、'\"()（）]/g, '')
+                .trim();
+            
+            const normalizedUser = normalize(userAnswer);
+            const normalizedCorrect = normalize(correctAnswer);
+            
+            // 完全匹配
+            if (normalizedUser === normalizedCorrect) return true;
+            
+            // 別名匹配
+            if (aliases && aliases.some(alias => normalize(alias) === normalizedUser)) {
+                return true;
+            }
+            
+            // 部分匹配（允許一定容錯）
+            if (normalizedCorrect.includes(normalizedUser) && normalizedUser.length >= 2) return true;
+            if (normalizedUser.includes(normalizedCorrect) && normalizedCorrect.length >= 2) return true;
+            
+            return false;
+        }
+        
+        // 提交答案
+        function submitAnswer() {
+            const userAnswer = document.getElementById('answer-input').value.trim();
+            const question = currentGame.currentQuestionObj;
+            
+            if (!question) {
+                showNotification('題目載入錯誤，請重新開始遊戲', 'error');
+                return;
+            }
+            
+            const correctAnswer = question.location;
+            
+            if (!userAnswer) {
+                showNotification('請輸入答案或選擇一個選項！', 'warning');
+                return;
+            }
+            
+            // 停止計時器
+            if (currentGame.timer) {
+                clearInterval(currentGame.timer);
+            }
+            
+            // 檢查答案
+            const isCorrect = checkAnswerMatch(userAnswer, correctAnswer, question.aliases);
+            
+            // 記錄遊戲歷史
+            currentGame.gameHistory.push({
+                question: question,
+                userAnswer: userAnswer,
+                correct: isCorrect,
+                timeUp: false,
+                timestamp: new Date().toISOString(),
+                timeLeft: currentGame.timeLeft,
+                hintsUsed: currentGame.hintsUsed - currentGame.hintsLeft
+            });
+            
+            let scoreToAdd = 0;
+            let feedbackHtml = '';
+            
+            if (isCorrect) {
+                // 計算得分：基礎分 + 時間獎勵 + 提示獎勵
+                let baseScore = 100;
+                let timeBonus = currentGame.timeLeft * 2;
+                let hintBonus = currentGame.hintsLeft * 20;
+                
+                // 懷舊地點額外加分
+                if (question.era === 'past') {
+                    baseScore += 50;
+                }
+                
+                // 難度加權
+                baseScore *= (question.difficulty || 1);
+                
+                scoreToAdd = Math.floor(baseScore + timeBonus + hintBonus);
+                currentGame.score += scoreToAdd;
+                currentGame.correctAnswers++;
+                
+                feedbackHtml = '<div class="game-feedback" style="background-color: var(--success-color); color: white;">';
+                feedbackHtml += '✓ 正確！ +' + scoreToAdd + '分<br>';
+                feedbackHtml += '正確答案：<strong>' + correctAnswer + '</strong>';
+                
+                if (question.hints?.history && currentGame.showFeedback) {
+                    feedbackHtml += '<br><br>' + question.hints.history;
+                }
+                
+                feedbackHtml += '</div>';
+                
+                // 檢查成就
+                checkAchievements();
+                
+                // 播放音效（如果啟用）
+                if (currentGame.soundEnabled) {
+                    playSound('correct');
+                }
+                
+            } else {
+                feedbackHtml = '<div class="game-feedback" style="background-color: var(--danger-color); color: white;">';
+                feedbackHtml += '✗ 錯誤！正確答案是：<strong>' + correctAnswer + '</strong>';
+                
+                if (question.hints?.history && currentGame.showFeedback) {
+                    feedbackHtml += '<br><br>' + question.hints.history;
+                }
+                
+                feedbackHtml += '</div>';
+                
+                // 生存模式：答錯即結束
+                if (currentGame.mode === 'survival') {
+                    setTimeout(() => {
+                        endGame();
+                    }, 4000);
+                    
+                    document.getElementById('game-feedback').innerHTML = feedbackHtml;
+                    
+                    // 播放音效（如果啟用）
+                    if (currentGame.soundEnabled) {
+                        playSound('wrong');
+                    }
+                    
+                    return;
+                }
+                
+                // 播放音效（如果啟用）
+                if (currentGame.soundEnabled) {
+                    playSound('wrong');
+                }
+            }
+            
+            document.getElementById('game-feedback').innerHTML = feedbackHtml;
+            
+            // 更新分數顯示
+            document.getElementById('score').textContent = currentGame.score;
+            
+            // 等待後繼續下一題
+            setTimeout(() => {
+                nextQuestion();
+            }, 4000);
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 跳過題目
+        function skipQuestion() {
+            if (!currentGame.allowSkip) return;
+            
+            const question = currentGame.currentQuestionObj;
+            if (!question) return;
+            
+            const correctAnswer = question.location;
+            
+            // 記錄遊戲歷史
+            currentGame.gameHistory.push({
+                question: question,
+                userAnswer: null,
+                correct: false,
+                skipped: true,
+                timestamp: new Date().toISOString()
+            });
+            
+            let feedbackHtml = '<div class="game-feedback" style="background-color: var(--info-color); color: white;">';
+            feedbackHtml += '⏭️ 跳過！正確答案是：<strong>' + correctAnswer + '</strong>';
+            
+            if (question.hints?.history && currentGame.showFeedback) {
+                feedbackHtml += '<br><br>' + question.hints.history;
+            }
+            
+            feedbackHtml += '</div>';
+            
+            document.getElementById('game-feedback').innerHTML = feedbackHtml;
+            
+            // 停止計時器
+            if (currentGame.timer) {
+                clearInterval(currentGame.timer);
+            }
+            
+            setTimeout(() => {
+                nextQuestion();
+            }, 3000);
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 顯示答案
+        function showAnswer() {
+            const question = currentGame.currentQuestionObj;
+            if (!question) return;
+            
+            const correctAnswer = question.location;
+            
+            let feedbackHtml = '<div class="game-feedback" style="background-color: var(--info-color); color: white;">';
+            feedbackHtml += '👁️ 正確答案是：<strong>' + correctAnswer + '</strong>';
+            
+            if (question.hints?.history) {
+                feedbackHtml += '<br><br>' + question.hints.history;
+            }
+            
+            feedbackHtml += '</div>';
+            
+            document.getElementById('game-feedback').innerHTML = feedbackHtml;
+            
+            // 記錄遊戲歷史
+            currentGame.gameHistory.push({
+                question: question,
+                userAnswer: null,
+                correct: false,
+                revealed: true,
+                timestamp: new Date().toISOString()
+            });
+            
+            // 停止計時器
+            if (currentGame.timer) {
+                clearInterval(currentGame.timer);
+            }
+            
+            setTimeout(() => {
+                nextQuestion();
+            }, 4000);
+            
+            // 保存遊戲狀態
+            saveGameState();
+        }
+        
+        // 下一題
+        function nextQuestion() {
+            currentGame.currentQuestion++;
+            
+            // 檢查是否完成所有題目
+            if (currentGame.currentQuestion > currentGame.totalQuestions) {
+                endGame();
+                return;
+            }
+            
+            // 更新題目計數器
+            document.getElementById('current-question').textContent = currentGame.currentQuestion;
+            
+            // 載入新題目
+            loadQuestion();
+        }
+        
+        // 切換收藏
+        function toggleFavorite() {
+            if (!currentGame.currentQuestionObj) return;
+            
+            const questionId = currentGame.currentQuestionObj.id;
+            
+            if (currentGame.favorites.has(questionId)) {
+                currentGame.favorites.delete(questionId);
+                showNotification('已從收藏中移除', 'info');
+            } else {
+                currentGame.favorites.add(questionId);
+                showNotification('已添加到收藏', 'success');
+            }
+            
+            updateFavoriteButton();
+            saveFavorites();
+        }
+        
+        // 更新收藏按鈕
+        function updateFavoriteButton() {
+            const favoriteBtn = document.getElementById('favorite-btn');
+            if (!favoriteBtn || !currentGame.currentQuestionObj) return;
+            
+            const questionId = currentGame.currentQuestionObj.id;
+            
+            if (currentGame.favorites.has(questionId)) {
+                favoriteBtn.innerHTML = '<i class="fas fa-star"></i>';
+                favoriteBtn.classList.add('favorited');
+            } else {
+                favoriteBtn.innerHTML = '<i class="far fa-star"></i>';
+                favoriteBtn.classList.remove('favorited');
+            }
+        }
+        
+        // 載入收藏
+        function loadFavorites() {
+            try {
+                const saved = localStorage.getItem('hktt_favorites');
+                if (saved) {
+                    currentGame.favorites = new Set(JSON.parse(saved));
+                }
+            } catch (error) {
+                console.error('載入收藏時出錯:', error);
+            }
+        }
+        
+        // 保存收藏
+        function saveFavorites() {
+            try {
+                localStorage.setItem('hktt_favorites', JSON.stringify(Array.from(currentGame.favorites)));
+            } catch (error) {
+                console.error('保存收藏時出錯:', error);
+            }
+        }
+        
+        // 檢查成就
+        function checkAchievements() {
+            const achievements = [];
+            
+            // 連續答對成就
+            if (currentGame.correctAnswers >= 5 && !currentGame.achievements.includes('fast_learner')) {
+                achievements.push({ id: 'fast_learner', name: '快速學習者', description: '連續答對5題' });
+                currentGame.achievements.push('fast_learner');
+            }
+            
+            if (currentGame.correctAnswers >= 10 && !currentGame.achievements.includes('hk_expert')) {
+                achievements.push({ id: 'hk_expert', name: '香港通', description: '連續答對10題' });
+                currentGame.achievements.push('hk_expert');
+            }
+            
+            // 不使用提示成就
+            if (currentGame.hintsUsed === 0 && currentGame.correctAnswers >= 3 && !currentGame.achievements.includes('no_hint_master')) {
+                achievements.push({ id: 'no_hint_master', name: '無提示大師', description: '不使用提示答對3題' });
+                currentGame.achievements.push('no_hint_master');
+            }
+            
+            // 懷舊大師成就
+            const vintageCorrect = currentGame.gameHistory.filter(h => 
+                h.correct && h.question.era === 'past').length;
+            if (vintageCorrect >= 5 && !currentGame.achievements.includes('vintage_master')) {
+                achievements.push({ id: 'vintage_master', name: '懷舊大師', description: '答對5題懷舊地點' });
+                currentGame.achievements.push('vintage_master');
+            }
+            
+            // 高分成就
+            if (currentGame.score >= 5000 && !currentGame.achievements.includes('high_scorer')) {
+                achievements.push({ id: 'high_scorer', name: '高分達人', description: '單次遊戲得分超過5000' });
+                currentGame.achievements.push('high_scorer');
+            }
+            
+            // 顯示成就
+            if (achievements.length > 0) {
+                let achievementHtml = '<div style="margin-top: 20px; padding: 20px; background: rgba(255, 204, 0, 0.1); border-radius: 15px; border-left: 6px solid var(--accent-color);">';
+                achievementHtml += '<strong>🎉 獲得時空成就！</strong><br>';
+                achievements.forEach(achievement => {
+                    achievementHtml += `<div style="margin-top: 15px;"><strong>${achievement.name}</strong>: ${achievement.description}</div>`;
+                    
+                    // 播放成就音效
+                    if (currentGame.soundEnabled) {
+                        playSound('achievement');
+                    }
+                });
+                achievementHtml += '</div>';
+                
+                const feedbackDiv = document.getElementById('game-feedback');
+                feedbackDiv.innerHTML += achievementHtml;
+            }
+        }
+        
+        // 確認結束遊戲
+        function confirmEndGame() {
+            if (confirm('確定要結束當前時空探索嗎？未完成的遊戲將不會保存。')) {
+                endGame();
+            } else {
+                // 如果取消，恢復遊戲狀態
+                if (currentGame.isPaused) {
+                    togglePause();
+                }
+            }
+        }
+        
+        // 結束遊戲
+        function endGame() {
+            // 停止計時器
+            if (currentGame.timer) {
+                clearInterval(currentGame.timer);
+                currentGame.timer = null;
+            }
+            
+            // 計算總用時
+            const endTime = new Date();
+            const totalTime = currentGame.startTime ? 
+                Math.floor((endTime - currentGame.startTime) / 1000) : 0;
+            
+            // 計算準確率
+            const totalAnswered = currentGame.gameHistory.length;
+            const accuracy = totalAnswered > 0 ? 
+                Math.round((currentGame.correctAnswers / totalAnswered) * 100) : 0;
+            
+            // 更新結果頁面
+            document.getElementById('final-score').textContent = currentGame.score;
+            document.getElementById('correct-answers').textContent = 
+                currentGame.correctAnswers + " / " + totalAnswered + " (" + accuracy + "%)";
+            document.getElementById('total-time').textContent = totalTime;
+            document.getElementById('hints-used').textContent = currentGame.hintsUsed;
+            
+            // 根據分數顯示評價和圖標
+            let review = "";
+            let resultTitle = "時空探索完成！";
+            let resultIcon = '<i class="fas fa-trophy"></i>';
+            
+            if (accuracy >= 90) {
+                review = "🏆 時空探索大師！您對香港的認識無所不知，絕對是香港時空專家！";
+                resultTitle = "時空大師！";
+                resultIcon = '<i class="fas fa-crown"></i>';
+            } else if (accuracy >= 70) {
+                review = "⭐ 優秀的時空旅者！您對香港有相當深入的了解，繼續探索更多香港記憶。";
+                resultTitle = "優秀表現！";
+                resultIcon = '<i class="fas fa-star"></i>';
+            } else if (accuracy >= 50) {
+                review = "👍 不錯的時空旅程！您對香港有一定認識，繼續探索會發現更多有趣的地點。";
+                resultTitle = "繼續努力！";
+            } else {
+                review = "💪 加油！多了解香港的地理、歷史和文化，下次會有更好的時空探索表現。";
+                resultTitle = "再接再厲！";
+                resultIcon = '<i class="fas fa-redo"></i>';
+            }
+            
+            // 如果是生存模式，添加特別評價
+            if (currentGame.mode === 'survival') {
+                review += ` 您在時空生存模式中連續答對了 ${currentGame.correctAnswers} 題！`;
+                if (currentGame.correctAnswers >= 10) {
+                    resultTitle = "生存達人！";
+                    resultIcon = '<i class="fas fa-heartbeat"></i>';
+                }
+            }
+            
+            // 如果是懷舊題目多，添加特別評價
+            const vintageQuestions = currentGame.gameHistory.filter(h => h.question.era === 'past').length;
+            if (vintageQuestions > 0) {
+                const vintageCorrect = currentGame.gameHistory.filter(h => 
+                    h.correct && h.question.era === 'past').length;
+                review += ` 您答對了 ${vintageCorrect} 題懷舊地點，重溫了香港的昔日記憶。`;
+            }
+            
+            document.getElementById('game-review').textContent = review;
+            document.getElementById('result-title').textContent = resultTitle;
+            document.getElementById('result-icon').innerHTML = resultIcon;
+            
+            // 顯示成就
+            if (currentGame.achievements.length > 0) {
+                const achievementsContainer = document.getElementById('achievements-container');
+                const achievementsList = document.getElementById('achievements-list');
+                
+                achievementsContainer.style.display = 'block';
+                achievementsList.innerHTML = '';
+                
+                currentGame.achievements.forEach(achievementId => {
+                    const achievementDiv = document.createElement('div');
+                    achievementDiv.className = 'achievement-badge';
+                    
+                    let achievementText = '';
+                    switch(achievementId) {
+                        case 'fast_learner':
+                            achievementText = '快速學習者 🏆';
+                            break;
+                        case 'hk_expert':
+                            achievementText = '香港通 🥇';
+                            break;
+                        case 'no_hint_master':
+                            achievementText = '無提示大師 🎯';
+                            break;
+                        case 'vintage_master':
+                            achievementText = '懷舊大師 🕰️';
+                            break;
+                        case 'high_scorer':
+                            achievementText = '高分達人 💯';
+                            break;
+                        default:
+                            achievementText = '時空成就 🏅';
+                    }
+                    
+                    achievementDiv.textContent = achievementText;
+                    achievementsList.appendChild(achievementDiv);
+                });
+            }
+            
+            // 保存遊戲記錄
+            saveGameHistory();
+            
+            // 清除保存的遊戲狀態
+            localStorage.removeItem('hktt_savedGame');
+            
+            // 顯示結果頁面
+            showPage('result-page');
+            
+            // 播放結束音效
+            if (currentGame.soundEnabled) {
+                playSound('complete');
+            }
+        }
+        
+        // 保存遊戲歷史
+        function saveGameHistory() {
+            const gameRecord = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                mode: currentGame.mode,
+                category: currentGame.category,
+                categories: currentGame.categories,
+                score: currentGame.score,
+                correctAnswers: currentGame.correctAnswers,
+                totalQuestions: currentGame.gameHistory.length,
+                totalTime: currentGame.startTime ? 
+                    Math.floor((new Date() - currentGame.startTime) / 1000) : 0,
+                hintsUsed: currentGame.hintsUsed,
+                achievements: currentGame.achievements,
+                accuracy: currentGame.gameHistory.length > 0 ? 
+                    Math.round((currentGame.correctAnswers / currentGame.gameHistory.length) * 100) : 0
+            };
+            
+            try {
+                // 獲取現有歷史
+                let gameHistory = JSON.parse(localStorage.getItem('hktt_gameHistory') || '[]');
+                gameHistory.push(gameRecord);
+                
+                // 按時間排序（最新的在前）
+                gameHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // 只保留最近50次記錄
+                if (gameHistory.length > 50) {
+                    gameHistory = gameHistory.slice(0, 50);
+                }
+                
+                localStorage.setItem('hktt_gameHistory', JSON.stringify(gameHistory));
+            } catch (error) {
+                console.error('保存遊戲歷史時出錯:', error);
+            }
+        }
+        
+        // 載入遊戲歷史
+        function loadGameHistory() {
+            const historyContent = document.getElementById('history-content');
+            if (!historyContent) return;
+            
+            try {
+                const gameHistory = JSON.parse(localStorage.getItem('hktt_gameHistory') || '[]');
+                
+                if (gameHistory.length === 0) {
+                    historyContent.innerHTML = '<p class="text-center">暫無遊戲記錄</p>';
+                    return;
+                }
+                
+                let html = '<div class="history-table">';
+                html += '<table style="width: 100%; border-collapse: collapse;">';
+                html += '<thead><tr>';
+                html += '<th>日期</th>';
+                html += '<th>模式</th>';
+                html += '<th>類別</th>';
+                html += '<th>得分</th>';
+                html += '<th>正確率</th>';
+                html += '<th>用時</th>';
+                html += '</tr></thead><tbody>';
+                
+                gameHistory.forEach(record => {
+                    const date = new Date(record.date);
+                    const dateStr = date.toLocaleDateString('zh-HK');
+                    const timeStr = date.toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' });
+                    
+                    html += '<tr>';
+                    html += `<td>${dateStr} ${timeStr}</td>`;
+                    html += `<td>${getModeName(record.mode)}</td>`;
+                    html += `<td>${getCategoryName(record.category)}</td>`;
+                    html += `<td>${record.score}</td>`;
+                    html += `<td>${record.accuracy || 0}%</td>`;
+                    html += `<td>${record.totalTime}秒</td>`;
+                    html += '</tr>';
+                });
+                
+                html += '</tbody></table></div>';
+                
+                // 添加統計信息
+                const totalGames = gameHistory.length;
+                const totalScore = gameHistory.reduce((sum, record) => sum + record.score, 0);
+                const avgScore = Math.round(totalScore / totalGames);
+                const totalTime = gameHistory.reduce((sum, record) => sum + record.totalTime, 0);
+                const avgAccuracy = Math.round(gameHistory.reduce((sum, record) => sum + (record.accuracy || 0), 0) / totalGames);
+                
+                html += '<div style="margin-top: 30px; padding: 25px; background: rgba(255, 255, 255, 0.08); border-radius: 20px;">';
+                html += '<h3 style="color: var(--accent-color); margin-bottom: 15px;">統計信息</h3>';
+                html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">';
+                html += `<div><strong>總遊戲次數：</strong>${totalGames}</div>`;
+                html += `<div><strong>平均得分：</strong>${avgScore}</div>`;
+                html += `<div><strong>平均正確率：</strong>${avgAccuracy}%</div>`;
+                html += `<div><strong>總遊戲時間：</strong>${Math.round(totalTime / 60)}分鐘</div>`;
+                html += '</div></div>';
+                
+                historyContent.innerHTML = html;
+            } catch (error) {
+                console.error('載入遊戲歷史時出錯:', error);
+                historyContent.innerHTML = '<p class="text-center" style="color: var(--danger-color);">載入歷史記錄時出錯</p>';
+            }
+        }
+        
+        // 清除遊戲歷史
+        function clearGameHistory() {
+            if (confirm('確定要清除所有遊戲歷史記錄嗎？此操作不可恢復。')) {
+                try {
+                    localStorage.removeItem('hktt_gameHistory');
+                    showNotification('歷史記錄已清除', 'success');
+                    loadGameHistory(); // 重新載入空歷史
+                } catch (error) {
+                    console.error('清除遊戲歷史時出錯:', error);
+                    showNotification('清除歷史記錄失敗', 'error');
+                }
+            }
+        }
+        
+        // 重新開始遊戲
+        function restartGame() {
+            // 使用相同的設定重新開始
+            initializeGame();
+            showPage('game-page');
+        }
+        
+        // 切換音效
+        function toggleSound() {
+            currentGame.soundEnabled = !currentGame.soundEnabled;
+            updateSoundButton();
+            saveSettings();
+            
+            showNotification(currentGame.soundEnabled ? '音效已開啟' : '音效已關閉', 'info');
+        }
+        
+        // 更新音效按鈕
+        function updateSoundButton() {
+            const soundBtn = document.getElementById('sound-toggle');
+            if (!soundBtn) return;
+            
+            if (currentGame.soundEnabled) {
+                soundBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                soundBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                soundBtn.style.background = 'rgba(255, 0, 0, 0.2)';
+            }
+        }
+        
+        // 播放音效
+        function playSound(type) {
+            if (!currentGame.soundEnabled) return;
+            
+            // 這裡可以添加實際的音效播放代碼
+            // 由於安全限制，網頁音效需要用戶交互後才能播放
+            console.log('播放音效:', type);
+        }
+        
+        // 顯示通知
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const messageElement = document.getElementById('notification-message');
+            
+            if (!notification || !messageElement) return;
+            
+            // 設置訊息和類型
+            messageElement.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            // 3秒後自動隱藏
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // 載入香港小知識
+        function loadHKFact() {
+            const factContainer = document.getElementById('hk-fact-container');
+            const factText = document.getElementById('hk-fact-text');
+            
+            if (!factContainer || !factText) return;
+            
+            if (hkFacts.length > 0) {
+                const randomFact = hkFacts[Math.floor(Math.random() * hkFacts.length)];
+                factText.textContent = randomFact;
+                factContainer.style.display = 'block';
+            } else {
+                factContainer.style.display = 'none';
+            }
+        }
+        
+        // 保存設定
+        function saveSettings() {
+            try {
+                const settings = {
+                    soundEnabled: currentGame.soundEnabled,
+                    showFeedback: currentGame.showFeedback,
+                    autoSave: currentGame.autoSave
+                };
+                localStorage.setItem('hktt_settings', JSON.stringify(settings));
+            } catch (error) {
+                console.error('保存設定時出錯:', error);
+            }
+        }
+        
+        // 保存遊戲狀態
+        function saveGameState() {
+            if (!currentGame.autoSave) return;
+            
+            try {
+                const gameState = {
+                    mode: currentGame.mode,
+                    category: currentGame.category,
+                    categories: currentGame.categories,
+                    score: currentGame.score,
+                    currentQuestion: currentGame.currentQuestion,
+                    totalQuestions: currentGame.totalQuestions,
+                    hintsLeft: currentGame.hintsLeft,
+                    timeLeft: currentGame.timeLeft,
+                    correctAnswers: currentGame.correctAnswers,
+                    hintsUsed: currentGame.hintsUsed,
+                    startTime: currentGame.startTime ? currentGame.startTime.toISOString() : null,
+                    gameHistory: currentGame.gameHistory,
+                    currentQuestionObj: currentGame.currentQuestionObj,
+                    usedQuestions: Array.from(usedQuestions),
+                    isPaused: currentGame.isPaused
+                };
+                
+                localStorage.setItem('hktt_savedGame', JSON.stringify(gameState));
+            } catch (error) {
+                console.error('保存遊戲狀態時出錯:', error);
+            }
+        }
+        
+        // 恢復遊戲
+        function restoreGame(gameState) {
+            try {
+                currentGame.mode = gameState.mode || 'classic';
+                currentGame.category = gameState.category || 'streets';
+                currentGame.categories = gameState.categories || ['streets'];
+                currentGame.score = gameState.score || 0;
+                currentGame.currentQuestion = gameState.currentQuestion || 1;
+                currentGame.totalQuestions = gameState.totalQuestions || 10;
+                currentGame.hintsLeft = gameState.hintsLeft || 3;
+                currentGame.timeLeft = gameState.timeLeft || 30;
+                currentGame.correctAnswers = gameState.correctAnswers || 0;
+                currentGame.hintsUsed = gameState.hintsUsed || 0;
+                currentGame.startTime = gameState.startTime ? new Date(gameState.startTime) : new Date();
+                currentGame.gameHistory = gameState.gameHistory || [];
+                currentGame.currentQuestionObj = gameState.currentQuestionObj || null;
+                currentGame.isPaused = gameState.isPaused || false;
+                
+                usedQuestions = new Set(gameState.usedQuestions || []);
+                
+                // 顯示遊戲頁面
+                showPage('game-page');
+                
+                // 延遲初始化以確保DOM已載入
+                setTimeout(() => {
+                    // 更新遊戲介面
+                    document.getElementById('game-title').textContent = 
+                        getModeName(currentGame.mode) + " - " + getCategoryName(currentGame.category);
+                    document.getElementById('current-question').textContent = currentGame.currentQuestion;
+                    document.getElementById('total-questions').textContent = currentGame.totalQuestions;
+                    document.getElementById('score').textContent = currentGame.score;
+                    document.getElementById('hints-left').textContent = currentGame.hintsLeft;
+                    document.getElementById('hint-count').textContent = currentGame.hintsLeft;
+                    document.getElementById('category-tag').textContent = getCategoryName(currentGame.category);
+                    
+                    // 根據模式設置時間顯示
+                    if (currentGame.timeLimit > 0) {
+                        document.getElementById('time-left').textContent = currentGame.timeLeft;
+                        if (!currentGame.isPaused) {
+                            startTimer();
+                        }
+                    } else {
+                        document.getElementById('time-left').textContent = "無限制";
+                    }
+                    
+                    // 載入當前題目
+                    if (currentGame.currentQuestionObj) {
+                        loadQuestionFromState();
+                    }
+                    
+                    showNotification('遊戲已恢復', 'success');
+                }, 100);
+                
+            } catch (error) {
+                console.error('恢復遊戲時出錯:', error);
+                showNotification('恢復遊戲失敗，開始新遊戲', 'error');
+                initializeGame();
+            }
+        }
+        
+        // 從狀態載入題目
+        function loadQuestionFromState() {
+            if (!currentGame.currentQuestionObj) return;
+            
+            const question = currentGame.currentQuestionObj;
+            
+            // 更新時空標記
+            const timeEraTag = document.getElementById('time-era-tag');
+            if (question.era === 'past') {
+                timeEraTag.textContent = "昔日香港";
+                timeEraTag.className = "time-era time-past";
+                timeEraTag.style.display = "inline-block";
+            } else {
+                timeEraTag.textContent = "現今香港";
+                timeEraTag.className = "time-era time-present";
+                timeEraTag.style.display = "inline-block";
+            }
+            
+            // 更新提示內容
+            document.getElementById('text-hint-content').textContent = question.hints?.text || "這是一個香港地點";
+            
+            if (question.hints?.image) {
+                document.getElementById('image-hint-content').src = question.hints.image;
+            }
+            
+            if (question.hints?.audio) {
+                document.getElementById('audio-hint-content').src = question.hints.audio;
+            }
+            
+            if (question.hints?.history) {
+                document.getElementById('history-hint-content').textContent = question.hints.history;
+            }
+            
+            // 更新答案選項
+            const optionsContainer = document.getElementById('answer-options');
+            optionsContainer.innerHTML = '';
+            
+            if (question.options && currentGame.showOptions) {
+                question.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'btn';
+                    button.textContent = option;
+                    button.onclick = () => selectAnswer(option);
+                    optionsContainer.appendChild(button);
+                });
+            }
+            
+            // 重置輸入框
+            document.getElementById('answer-input').value = '';
+            
+            // 更新收藏按鈕
+            updateFavoriteButton();
+            
+            // 恢復暫停狀態
+            if (currentGame.isPaused) {
+                document.getElementById('pause-overlay').classList.add('active');
+            }
+        }
+        
+        // 切換遊戲詳細數據
+        function toggleGameDetails() {
+            const detailsContainer = document.getElementById('game-details');
+            const detailsContent = document.getElementById('game-details-content');
+            const detailsButton = document.getElementById('details-button');
+            
+            if (detailsContainer.style.display === 'none' || !detailsContainer.style.display) {
+                // 顯示詳細數據
+                let html = '<div style="text-align: left;">';
+                html += '<h3 style="color: var(--accent-color); margin-bottom: 15px;">題目詳細記錄</h3>';
+                
+                currentGame.gameHistory.forEach((record, index) => {
+                    html += '<div style="padding: 15px; margin-bottom: 10px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">';
+                    html += `<strong>第${index + 1}題：${record.question.location}</strong><br>`;
+                    html += `您的答案：${record.userAnswer || '未回答'}<br>`;
+                    html += `結果：${record.correct ? '✓ 正確' : '✗ 錯誤'}<br>`;
+                    if (record.timeLeft !== undefined) {
+                        html += `剩餘時間：${record.timeLeft}秒<br>`;
+                    }
+                    html += `提示使用：${record.hintsUsed || 0}次`;
+                    html += '</div>';
+                });
+                
+                html += '</div>';
+                detailsContent.innerHTML = html;
+                detailsContainer.style.display = 'block';
+                detailsButton.innerHTML = '<i class="fas fa-times"></i> 隱藏詳情';
+            } else {
+                // 隱藏詳細數據
+                detailsContainer.style.display = 'none';
+                detailsButton.innerHTML = '<i class="fas fa-chart-bar"></i> 查看詳情';
+            }
+        }
+        
+        // 輔助函數：獲取模式名稱
+        function getModeName(mode) {
+            const modeNames = {
+                'classic': '經典時空',
+                'challenge': '時空挑戰',
+                'survival': '時空生存',
+                'timetravel': '時空穿梭',
+                'learning': '時空學堂',
+                'memory': '記憶考驗',
+                'versus': '時空對決',
+                'custom': '自訂時空'
+            };
+            return modeNames[mode] || '未知模式';
+        }
+        
+        // 輔助函數：獲取類別名稱
+        function getCategoryName(category) {
+            const categoryNames = {
+                'streets': '街道與道路',
+                'facilities': '公共設施',
+                'transport': '交通網絡',
+                'estates': '公共屋邨',
+                'markets': '市集與店鋪',
+                'buildings': '唐樓與歷史建築',
+                'vintage': '懷舊地點',
+                'all': '全類別探索',
+                'custom': '自訂組合'
+            };
+            return categoryNames[category] || '未知類別';
+        }
+        
+        // 輔助函數：保存到localStorage
+        function saveToLocalStorage(key, value) {
+            try {
+                localStorage.setItem(key, value);
+                return true;
+            } catch (error) {
+                console.error('保存到localStorage時出錯:', error);
+                return false;
+            }
+        }
+        
+        // 處理頁面可見性變化
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden && currentGame.timer && !currentGame.isPaused) {
+                // 頁面隱藏，自動暫停遊戲
+                togglePause();
+            }
+        });
+        
+        // 處理頁面卸載（關閉前保存）
+        window.addEventListener('beforeunload', function(e) {
+            if (currentGame.startTime && !currentGame.isPaused && currentGame.autoSave) {
+                // 保存遊戲狀態
+                saveGameState();
+                
+                // 顯示確認訊息（某些瀏覽器可能不顯示自訂訊息）
+                const confirmationMessage = '您的遊戲進度已自動保存。確定要離開嗎？';
+                e.returnValue = confirmationMessage;
+                return confirmationMessage;
+            }
+        });
+    </script>
+</body>
+</html>
